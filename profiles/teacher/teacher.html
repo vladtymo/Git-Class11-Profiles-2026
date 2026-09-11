@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jordan Blake — Teacher Profile | SuperClass</title>
+    <meta name="description"
+        content="Teacher profile for Jordan Blake, Computer Science teacher at SuperClass." />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-heading">
+                <img class="avatar" src="https://avatars.githubusercontent.com/u/59306514?v=4"
+                    alt="Vlad Tymoshchuk's GitHub avatar" width="96" height="96" />
+                <div>
+                    <span class="badge" aria-label="Profile role">Profile • Teacher</span>
+                    <h1 class="title">Vlad Tymoshchuk</h1>
+                    <p class="subtitle">Web development teacher at SuperClass — passionate about making HTML, CSS, and
+                        JavaScript approachable, one lesson at a time.</p>
+                </div>
+            </div>
+            <div class="toolbar">
+                <button class="btn">
+                    <a class="clear-styles" href="../../index.html">Back Home</a>
+                </button>
+                <button class="btn">
+                    <a class="clear-styles" href="https://github.com/vladtymo" target="_blank" rel="noopener">View GitHub</a>
+                </button>
+                <button id="copyLink" class="btn" aria-label="Copy shareable link">Copy Link</button>
+                <button id="toggleContrast" class="btn ghost" aria-label="Toggle high contrast">Toggle Contrast</button>
+            </div>
+
+        </header>
+
+        <section class="grid">
+            <article class="card span-8">
+                <h2>About Me</h2>
+                <p>I teach web development fundamentals — HTML, CSS, and JavaScript — helping students build
+                    confidence writing clean, maintainable code. I believe the best way to learn a concept is to
+                    build something real with it.</p>
+                <div class="callout" role="note">
+                    <strong>Office door always open:</strong> Stop by during office hours or send me a message anytime —
+                    questions are always welcome.
+                </div>
+            </article>
+
+            <aside class="card span-4">
+                <h2>Quick Facts</h2>
+                <ul>
+                    <li>Subject: <span class="kbd">Web Development</span></li>
+                    <li>Location: <span class="kbd">Ukraine</span></li>
+                    <li>GitHub: <span class="kbd">@vladtymo</span></li>
+                    <li>Public Repos: <span class="kbd">385</span></li>
+                </ul>
+            </aside>
+
+            <article class="card span-12">
+                <h2>Background</h2>
+                <div class="tabs" id="profileTabs">
+                    <div class="tablist" role="tablist" aria-label="Profile sections">
+                        <button class="tab" role="tab" aria-controls="tab-edu" data-tab="edu">Education</button>
+                        <button class="tab" role="tab" aria-controls="tab-exp" data-tab="exp">Experience</button>
+                        <button class="tab" role="tab" aria-controls="tab-cert" data-tab="cert">Certifications</button>
+                        <button class="tab" role="tab" aria-controls="tab-contact" data-tab="contact">Contact</button>
+                    </div>
+
+                    <section class="tabpanel" id="tab-edu" role="tabpanel" aria-labelledby="edu">
+                        <h3>Education</h3>
+                        <ul>
+                            <li>M.Ed. in Curriculum & Instruction — State University</li>
+                            <li>B.Sc. in Computer Science — State University</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-exp" role="tabpanel" aria-labelledby="exp">
+                        <h3>Experience</h3>
+                        <ul>
+                            <li>Computer Science Teacher — SuperClass (2019–present)</li>
+                            <li>Software Engineer — Acme Corp (2014–2019)</li>
+                            <li>Teaching Assistant — State University (2012–2014)</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-cert" role="tabpanel" aria-labelledby="cert">
+                        <h3>Certifications</h3>
+                        <div class="pill-list" aria-label="Certifications">
+                            <span class="pill">Certified K-12 Educator</span>
+                            <span class="pill">AWS Certified Developer</span>
+                            <span class="pill">Google Certified Educator</span>
+                        </div>
+                    </section>
+
+                    <section class="tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="contact">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li>GitHub: <a href="https://github.com/vladtymo" target="_blank" rel="noopener">github.com/vladtymo</a></li>
+                            <li>Office: Room 204</li>
+                            <li>Office Hours: Mon & Wed, 2:00 PM – 3:30 PM</li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Teaching Philosophy</h2>
+                <p>Every student learns differently, so I focus on hands-on projects, real-world examples, and plenty
+                    of room to ask questions and make mistakes.</p>
+                <div class="pill-list" aria-label="Core values">
+                    <span class="pill">Curiosity</span>
+                    <span class="pill">Patience</span>
+                    <span class="pill">Practice</span>
+                    <span class="pill">Feedback</span>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Courses Taught</h2>
+                <div class="pill-list" aria-label="Courses">
+                    <span class="pill">HTML & CSS</span>
+                    <span class="pill">JS Fundamentals</span>
+                    <span class="pill">Git & GitHub</span>
+                    <span class="pill">Software Design Patterns</span>
+                </div>
+            </article>
+
+            <article class="card span-12">
+                <h2>Office Hours</h2>
+                <ul>
+                    <li><strong>Monday:</strong> 2:00 PM – 3:30 PM (Room 204)</li>
+                    <li><strong>Wednesday:</strong> 2:00 PM – 3:30 PM (Room 204)</li>
+                    <li><strong>Friday:</strong> By appointment</li>
+                </ul>
+            </article>
+        </section>
+
+        <footer>
+            <p>© 2026 SuperClass. Teacher Profile — Vlad Tymoshchuk.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Link copier
+        document.getElementById('copyLink').addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(location.href);
+                const btn = document.getElementById('copyLink');
+                const old = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = old, 1200);
+            } catch { }
+        });
+
+        // Contrast toggle (temporary CSS override)
+        const toggleBtn = document.getElementById('toggleContrast');
+        let high = false;
+        toggleBtn.addEventListener('click', () => {
+            high = !high;
+            document.documentElement.style.setProperty('--bg', high ? '#05070f' : '');
+            document.documentElement.style.setProperty('--card', high ? '#0a0f22' : '');
+            document.documentElement.style.setProperty('--card-2', high ? '#0b1020' : '');
+            document.documentElement.style.setProperty('--text', high ? '#f2f6ff' : '');
+            document.documentElement.style.setProperty('--border', high ? '#243463' : '');
+        });
+
+        // Tabs logic
+        const tabsRoot = document.getElementById('profileTabs');
+        const tabs = Array.from(tabsRoot.querySelectorAll('.tab'));
+        const panels = Array.from(tabsRoot.querySelectorAll('.tabpanel'));
+        function activate(id) {
+            tabs.forEach(t => t.dataset.active = (t.dataset.tab === id));
+            panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + id));
+        }
+        tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+        activate('edu');
+    </script>
+</body>
+
+</html>
