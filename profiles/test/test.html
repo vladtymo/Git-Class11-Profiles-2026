@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Остап — Student Profile | SuperClass (Рівне)</title>
+    <meta name="description" content="Student profile for Ostap at SuperClass." />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Стилі для каруселі */
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-top: 15px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .carousel-btn.prev { left: 15px; }
+        .carousel-btn.next { right: 15px; }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .carousel-dot.active {
+            background: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-heading">
+                <img class="avatar" src="https://api.dicebear.com/9.x/initials/svg?seed=Ostap"
+                    alt="Остап's avatar" width="96" height="96" />
+                <div>
+                    <span class="badge" aria-label="Profile role">Profile • Student</span>
+                    <h1 class="title">Остап</h1>
+                    <p class="subtitle">Student at SuperClass and IT Step School in Rivne, learning web development and playing guitar.</p>
+                </div>
+            </div>
+            <div class="toolbar">
+                <button class="btn">
+                    <a class="clear-styles" href="../../index.html">Back Home</a>
+                </button>
+                <button id="copyLink" class="btn" aria-label="Copy shareable link">Copy Link</button>
+                <button id="toggleContrast" class="btn ghost" aria-label="Toggle high contrast">Toggle Contrast</button>
+            </div>
+
+        </header>
+
+        <section class="grid">
+            <article class="card span-8">
+                <h2>About Me</h2>
+                <p>I'm a student at IT Step School and SuperClass in Rivne, working through the web development track. I enjoy building small projects, practicing my skills, and playing guitar.</p>
+                <div class="callout" role="note">
+                    <strong>Currently learning:</strong> JavaScript fundamentals, web development, and Git workflows.
+                </div>
+            </article>
+
+            <aside class="card span-4">
+                <h2>Quick Facts</h2>
+                <ul>
+                    <li>Track: <span class="kbd">Web Development</span></li>
+                    <li>School: <span class="kbd">IT Step School</span></li>
+                    <li>City: <span class="kbd">Рівне</span></li>
+                    <li>Teacher: <span class="kbd">Vlad Tymoshchuk</span></li>
+                    <li>Email: <span class="kbd">ostap@superclass.edu</span></li>
+                </ul>
+            </aside>
+            <article class="card span-12">
+                <h2>Фотогалерея проєктів та досягнень</h2>
+                <div class="carousel-container" id="photoCarousel">
+                    <button class="carousel-btn prev" aria-label="Попереднє фото">&#10094;</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_1dluam1dluam1dlu.jpg" alt="Проєкт 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_6ekfsn6ekfsn6ekf.jpg" alt="Проєкт 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_e1lcide1lcide1lc (1).jpg" alt="Проєкт 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_xz2k7hxz2k7hxz2k.jpg" alt="Проєкт 4">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images (2) (1).jpg" alt="Остап">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Наступне фото">&#10095;</button>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </article>
+
+            <article class="card span-12">
+                <h2>Background</h2>
+                <div class="tabs" id="profileTabs">
+                    <div class="tablist" role="tablist" aria-label="Profile sections">
+                        <button class="tab" role="tab" aria-controls="tab-edu" data-tab="edu">Education</button>
+                        <button class="tab" role="tab" aria-controls="tab-skills" data-tab="skills">Skills</button>
+                        <button class="tab" role="tab" aria-controls="tab-projects" data-tab="projects">Projects</button>
+                        <button class="tab" role="tab" aria-controls="tab-contact" data-tab="contact">Contact</button>
+                    </div>
+
+                    <section class="tabpanel" id="tab-edu" role="tabpanel" aria-labelledby="edu">
+                        <h3>Education</h3>
+                        <ul>
+                            <li>Enrolled in IT Step School (Рівне)</li>
+                            <li>Enrolled in SuperClass — Web Development Track (2026–present)</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-skills" role="tabpanel" aria-labelledby="skills">
+                        <h3>Skills</h3>
+                        <div class="pill-list" aria-label="Skills">
+                            <span class="pill">HTML</span>
+                            <span class="pill">CSS</span>
+                            <span class="pill">JavaScript (learning)</span>
+                            <span class="pill">Git & GitHub</span>
+                            <span class="pill">Guitar</span>
+                        </div>
+                    </section>
+
+                    <section class="tabpanel" id="tab-projects" role="tabpanel" aria-labelledby="projects">
+                        <h3>Projects</h3>
+                        <ul>
+                            <li>Personal portfolio page built with HTML & CSS</li>
+                            <li>To-do list app built with vanilla JavaScript</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="contact">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li>Email: ostap@superclass.edu</li>
+                            <li>City: Рівне</li>
+                            <li>Class: Web Development Track</li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Interests</h2>
+                <div class="pill-list" aria-label="Interests">
+                    <span class="pill">Coding</span>
+                    <span class="pill">Guitar</span>
+                    <span class="pill">Gaming</span>
+                    <span class="pill">Open Source</span>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Courses Enrolled</h2>
+                <div class="pill-list" aria-label="Courses">
+                    <span class="pill">HTML & CSS</span>
+                    <span class="pill">JS Fundamentals</span>
+                    <span class="pill">Git & GitHub</span>
+                </div>
+            </article>
+        </section>
+
+        <footer>
+            <p>© 2026 SuperClass. Student Profile — Остап (Рівне).</p>
+        </footer>
+    </div>
+
+    <script>
+        // 1. Покращена кнопка копіювання посилання
+        const copyBtn = document.getElementById('copyLink');
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(location.href);
+                const old = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                copyBtn.style.borderColor = 'var(--brand)';
+                setTimeout(() => {
+                    copyBtn.textContent = old;
+                    copyBtn.style.borderColor = '';
+                }, 1500);
+            } catch { }
+        });
+
+        // 2. Збереження контрастної теми в localStorage
+        const toggleBtn = document.getElementById('toggleContrast');
+        let high = localStorage.getItem('highContrast') === 'true';
+
+        function applyTheme(isHigh) {
+            document.documentElement.style.setProperty('--bg', isHigh ? '#05070f' : '');
+            document.documentElement.style.setProperty('--card', isHigh ? '#0a0f22' : '');
+            document.documentElement.style.setProperty('--card-2', isHigh ? '#0b1020' : '');
+            document.documentElement.style.setProperty('--text', isHigh ? '#f2f6ff' : '');
+            document.documentElement.style.setProperty('--border', isHigh ? '#243463' : '');
+        }
+        
+        // Застосовуємо тему при завантаженні
+        applyTheme(high);
+
+        toggleBtn.addEventListener('click', () => {
+            high = !high;
+            localStorage.setItem('highContrast', high);
+            applyTheme(high);
+        });
+
+        // 3. Інтерактивні вкладки (Tabs)
+        const tabsRoot = document.getElementById('profileTabs');
+        const tabs = Array.from(tabsRoot.querySelectorAll('.tab'));
+        const panels = Array.from(tabsRoot.querySelectorAll('.tabpanel'));
+        
+        function activate(id) {
+            tabs.forEach(t => t.dataset.active = (t.dataset.tab === id));
+            panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + id));
+        }
+        tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+        activate('edu');
+
+        // 4. Покращена карусель (з автопрокруткою та управлінням з клавіатури)
+        const carousel = document.getElementById('photoCarousel');
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextButton = document.querySelector('.carousel-btn.next');
+        const prevButton = document.querySelector('.carousel-btn.prev');
+        const dotsContainer = document.getElementById('carouselDots');
+        let currentIndex = 0;
+        let slideInterval;
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                moveToSlide(index);
+                resetInterval();
+            });
+            dotsContainer.appendChild(dot);
+        });
+        const dots = Array.from(dotsContainer.children);
+
+        function updateDots(index) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function moveToSlide(index) {
+            if (index < 0) {
+                currentIndex = slides.length - 1;
+            } else if (index >= slides.length) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots(currentIndex);
+        }
+
+        nextButton.addEventListener('click', () => {
+            moveToSlide(currentIndex + 1);
+            resetInterval();
+        });
+
+        prevButton.addEventListener('click', () => {
+            moveToSlide(currentIndex - 1);
+            resetInterval();
+        });
+
+        // Керування стрілками клавіатури, якщо карусель у фокусі або наведені
+        carousel.setAttribute('tabindex', '0');
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                moveToSlide(currentIndex + 1);
+                resetInterval();
+            } else if (e.key === 'ArrowLeft') {
+                moveToSlide(currentIndex - 1);
+                resetInterval();
+            }
+        });
+
+        // Автопрокрутка кожні 4 секунди
+        function startInterval() {
+            slideInterval = setInterval(() => {
+                moveToSlide(currentIndex + 1);
+            }, 4000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        // Зупинка автопрокрутки при наведенні миші
+        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        carousel.addEventListener('mouseleave', () => startInterval());
+
+        startInterval();
+
+        // 5. Ефект плавного ظهور (fade-in) карток при прокручуванні
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
