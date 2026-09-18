@@ -1,0 +1,344 @@
+:root {
+    --bg: #110306;
+    --card: rgba(43, 7, 16, 0.8);
+    --card-2: rgba(30, 4, 11, 0.9);
+    --text: #f7e1e8;
+    --border: rgba(139, 0, 45, 0.5);
+    --brand: #9b112c;
+    --brand-hover: #b91c3d;
+    --muted: #b87a8e;
+    --accent: #d90429;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    --glass-blur: blur(12px);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Чіткий середньовічний замок, вікна та краєвид на фоні через SVG-шаблон */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    background-image: 
+        /* Величні арки вікон замку зі світлом краєвиду */
+        radial-gradient(ellipse 180px 280px at 15% 30%, rgba(217, 4, 41, 0.25) 0%, transparent 80%),
+        radial-gradient(ellipse 180px 280px at 85% 30%, rgba(217, 4, 41, 0.25) 0%, transparent 80%),
+        /* SVG-малюнок стін замку, зубців та вікон */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' width='100%' height='100%' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='sky' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233a0512' stop-opacity='0.6'/%3E%3Cstop offset='100%25' stop-color='%23110306' stop-opacity='0.9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23sky)'/%3E%3C!-- Зубці стін замку зверху --%3E%3Cpath d='M0 120 h100 v-80 h80 v80 h100 v-80 h80 v80 h120 v-80 h80 v80 h120 v-80 h80 v80 h100 v-80 h80 v80 h140 v-80 h80 v80 h100 v680 H0 Z' fill='%231a0409' opacity='0.85'/%3E%3C!-- Готичні вікна-арки --%3E%3Cpath d='M150 250 q40 -60 80 0 v180 h-80 Z' fill='%23590d1f' opacity='0.6' stroke='%23ff4d6d' stroke-width='4'/%3E%3Cpath d='M970 250 q40 -60 80 0 v180 h-80 Z' fill='%23590d1f' opacity='0.6' stroke='%23ff4d6d' stroke-width='4'/%3E%3C!-- Текстура кам'яних блоків стіни --%3E%3Cpath d='M0 200 H1200 M0 300 H1200 M0 400 H1200 M0 500 H1200 M0 600 H1200 M0 700 H1200' stroke='%23000000' stroke-width='3' opacity='0.5'/%3E%3Cpath d='M200 120 V200 M400 120 V200 M600 120 V200 M800 120 V200 M1000 120 V200 M150 200 V300 M350 200 V300 M550 200 V300 M750 200 V300 M950 200 V300' stroke='%23000000' stroke-width='2' opacity='0.4'/%3E%3C/svg%3E"),
+        linear-gradient(180deg, #110306 0%, #22050c 100%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Шапка профілю */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.profile-heading {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    box-shadow: 0 0 15px rgba(155, 17, 44, 0.4);
+    background-color: var(--card);
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--brand), #590d1f);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 107, 138, 0.3);
+}
+
+.title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 500px;
+}
+
+/* Кнопки */
+.toolbar {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    background: linear-gradient(135deg, var(--brand), #6b0c1e);
+    color: #fff;
+    border: 1px solid var(--border);
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, var(--brand-hover), var(--brand));
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(155, 17, 44, 0.4);
+}
+
+.btn.ghost {
+    background: var(--card);
+    backdrop-filter: var(--glass-blur);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn.ghost:hover {
+    background: rgba(155, 17, 44, 0.2);
+    border-color: var(--brand);
+    color: #fff;
+}
+
+.clear-styles {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+/* Сітка (Grid) */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+}
+
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+
+/* Картки у стилі "Glassmorphism" */
+.card {
+    background: var(--card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 138, 0.5), transparent);
+}
+
+.card:hover {
+    border-color: rgba(217, 4, 41, 0.6);
+    box-shadow: 0 15px 35px rgba(155, 17, 44, 0.4);
+    transform: translateY(-3px);
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card li {
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.callout {
+    background-color: var(--card-2);
+    border-left: 3px solid var(--accent);
+    padding: 16px;
+    border-radius: 0 10px 10px 0;
+    margin-top: 16px;
+    font-size: 0.95rem;
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+}
+
+.kbd {
+    display: inline-block;
+    background-color: var(--card-2);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #ff8fa3;
+}
+
+.pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pill {
+    background-color: var(--card-2);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #f7e1e8;
+    transition: all 0.2s ease;
+}
+
+.pill:hover {
+    border-color: var(--brand);
+    background-color: rgba(155, 17, 44, 0.2);
+}
+
+/* Таби */
+.tabs {
+    margin-top: 10px;
+}
+
+.tablist {
+    display: flex;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.tab {
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.tab:hover {
+    color: #fff;
+    background: rgba(155, 17, 44, 0.1);
+}
+
+.tab[data-active="true"] {
+    color: #fff;
+    border-bottom-color: var(--accent);
+    background: rgba(155, 17, 44, 0.2);
+}
+
+.tabpanel {
+    display: none;
+}
+
+.tabpanel.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.tabpanel h3 {
+    margin-bottom: 14px;
+    font-size: 1.05rem;
+    color: #fff;
+}
+
+/* Футер */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .span-4, .span-6, .span-8 {
+        grid-column: span 12;
+    }
+    header {
+        flex-direction: column;
+    }
+    .toolbar {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}

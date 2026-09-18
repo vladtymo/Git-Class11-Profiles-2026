@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Софія Дубина — Профіль студента | Юкі
+    </title>
+    <meta name="description" content="Профіль студентки Софії Дубини у SuperClass." />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-heading">
+                <img class="avatar" src="./Gemini_Generated_Image_in7j0din7j0din7j.jpg"
+                    alt="Аватар Софії" width="96" height="96" />
+                <div>
+                    <span class="badge" aria-label="Profile role">Профіль • Студентка</span>
+                    <h1 class="title">Софія Дубина</h1>
+                    <p class="subtitle">Студентка Юкі, вивчає веб-розробку, дизайн та основи створення інтерфейсів.</p>
+                </div>
+            </div>
+            <div class="toolbar">
+                <button class="btn">
+                    <a class="clear-styles" href="../../index.html">На головну</a>
+                </button>
+                <button id="copyLink" class="btn" aria-label="Copy shareable link">Копіювати посилання</button>
+                <button id="toggleContrast" class="btn ghost" aria-label="Toggle high contrast">Контраст</button>
+            </div>
+        </header>
+
+        <section class="grid">
+            <article class="card span-8">
+                <h2>Про мене</h2>
+                <p>Я студентка Юкі, навчаюся на напрямку веб-розробки. Мені подобається поєднувати креативний підхід до дизайну з написанням коду, створюючи зручні та естетичні проєкти.</p>
+                <div class="callout" role="note">
+                    <strong>Зараз вивчаю:</strong> Основи верстки (HTML/CSS) та роботу з графічними редакторами.
+                </div>
+            </article>
+
+            <aside class="card span-4">
+                <h2>Коротка інформація</h2>
+                <ul>
+                    <li>Напрямок: <span class="kbd">Web Development</span></li>
+                    <li>Курс: <span class="kbd">1-й рік</span></li>
+                    <li>Викладач: <span class="kbd">простигосподи</span></li>
+                    <li>Email: <span class="kbd">sofia.d@superclass.edu</span></li>
+                </ul>
+            </aside>
+
+            <article class="card span-12">
+                <h2>Деталі</h2>
+                <div class="tabs" id="profileTabs">
+                    <div class="tablist" role="tablist" aria-label="Profile sections">
+                        <button class="tab" role="tab" aria-controls="tab-edu" data-tab="edu">Освіта</button>
+                        <button class="tab" role="tab" aria-controls="tab-skills" data-tab="skills">Навички</button>
+                        <button class="tab" role="tab" aria-controls="tab-projects" data-tab="projects">Проєкти</button>
+                        <button class="tab" role="tab" aria-controls="tab-contact" data-tab="contact">Контакти</button>
+                    </div>
+
+                    <section class="tabpanel" id="tab-edu" role="tabpanel" aria-labelledby="edu">
+                        <h3>Освіта</h3>
+                        <ul>
+                            <li>Юкі — Блядушник (2026–теперішній час)</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-skills" role="tabpanel" aria-labelledby="skills">
+                        <h3>Навички</h3>
+                        <div class="pill-list" aria-label="Skills">
+                            <span class="pill">HTML</span>
+                            <span class="pill">CSS</span>
+                            <span class="pill">Figma</span>
+                            <span class="pill">UI/UX Design</span>
+                        </div>
+                    </section>
+
+                    <section class="tabpanel" id="tab-projects" role="tabpanel" aria-labelledby="projects">
+                        <h3>Проєкти</h3>
+                        <ul>
+                            <li>Персональне портфоліо (в процесі розробки)</li>
+                            <li>Макети сторінок у Figma для навчальних завдань</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="contact">
+                        <h3>Контакти</h3>
+                        <ul>
+                            <li>Email: sofia.d@superclass.edu</li>
+                            <li>Група: Бляді Рівне</li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Інтереси</h2>
+                <div class="pill-list" aria-label="Interests">
+                    <span class="pill">Дизайн</span>
+                    <span class="pill">Мистецтво</span>
+                    <span class="pill">Технології</span>
+                    <span class="pill">Музика</span>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Курси</h2>
+                <div class="pill-list" aria-label="Courses">
+                    <span class="pill">Основи HTML & CSS</span>
+                    <span class="pill">Вступ до дизайну</span>
+                </div>
+            </article>
+        </section>
+
+        <footer>
+            <p>© 2026 SuperClass. Профіль студента — Софія Дубина.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('copyLink').addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(location.href);
+                const btn = document.getElementById('copyLink');
+                const old = btn.textContent;
+                btn.textContent = 'Скопійовано!';
+                setTimeout(() => btn.textContent = old, 1200);
+            } catch { }
+        });
+
+        const toggleBtn = document.getElementById('toggleContrast');
+        let high = false;
+        toggleBtn.addEventListener('click', () => {
+            high = !high;
+            document.documentElement.style.setProperty('--bg', high ? '#05070f' : '');
+            document.documentElement.style.setProperty('--card', high ? '#0a0f22' : '');
+            document.documentElement.style.setProperty('--card-2', high ? '#0b1020' : '');
+            document.documentElement.style.setProperty('--text', high ? '#f2f6ff' : '');
+            document.documentElement.style.setProperty('--border', high ? '#243463' : '');
+        });
+
+        const tabsRoot = document.getElementById('profileTabs');
+        const tabs = Array.from(tabsRoot.querySelectorAll('.tab'));
+        const panels = Array.from(tabsRoot.querySelectorAll('.tabpanel'));
+        
+        function activate(id) {
+            tabs.forEach(t => t.dataset.active = (t.dataset.tab === id));
+            panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + id));
+        }
+        
+        tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+        activate('edu');
+    </script>
+</body>
+
+</html>
