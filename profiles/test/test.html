@@ -1,0 +1,1075 @@
+
+        <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Остап — Student Profile | SuperClass (Рівне)</title>
+    <meta name="description" content="Student profile for Ostap at SuperClass." />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        :root {
+  --bg: #0f172a;
+  --card: rgba(30, 41, 59, 0.7);
+  --card-hover: rgba(51, 65, 85, 0.8);
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.35);
+  --border: rgba(255, 255, 255, 0.1);
+  --radius: 16px;
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+  padding: 24px 16px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   ФОНОВІ АНІМОВАНІ ШЕСТЕРНІ
+   ========================================== */
+.gears-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Щоб шестерні не заважали клікати по елементах */
+  z-index: -1;
+  overflow: hidden;
+}
+
+.gear {
+  position: absolute;
+  fill: rgba(56, 189, 248, 0.08); /* Неоновий напівпрозорий колір */
+  transform-origin: center;
+}
+
+/* Велика шестерня в правому верхньому кутку */
+.gear-large {
+  top: -80px;
+  right: -80px;
+  width: 380px;
+  height: 380px;
+  animation: rotateClockwise 25s linear infinite;
+}
+
+/* Мала шестерня в лівому нижньому кутку */
+.gear-small {
+  bottom: -60px;
+  left: -60px;
+  width: 260px;
+  height: 260px;
+  animation: rotateCounterClockwise 18s linear infinite;
+}
+
+@keyframes rotateClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* ==========================================
+   HEADER & AVATAR
+   ========================================== */
+header {
+  margin-bottom: 32px;
+}
+
+.profile-heading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+.badge {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 6px 0 2px;
+  background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* TOOLBAR BUTTONS */
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.clear-styles {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================
+   GRID LAYOUT & CARDS (GLASSMORPHISM)
+   ========================================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 12px 40px 0 var(--accent-glow);
+}
+
+.span-4  { grid-column: span 4; }
+.span-6  { grid-column: span 6; }
+.span-8  { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+
+@media (max-width: 768px) {
+  .span-4, .span-6, .span-8, .span-12 {
+    grid-column: span 12;
+  }
+}
+
+.card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.callout {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin-bottom: 10px;
+  color: var(--text-muted);
+}
+
+.kbd {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  background: var(--accent);
+  color: #000;
+  font-weight: 600;
+  transform: scale(1.05);
+}
+
+/* ==========================================
+   CAROUSEL SECTION
+   ========================================== */
+.carousel-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.7);
+  color: #fff;
+  border: 1px solid var(--border);
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.carousel-btn.prev { left: 16px; }
+.carousel-btn.next { right: 16px; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  width: 28px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ==========================================
+   TABS
+   ========================================== */
+.tablist {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab[data-active="true"] {
+  color: var(--accent);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.tabpanel {
+  display: none;
+}
+
+.tabpanel.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   FOOTER & TOAST
+   ========================================== */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+}
+
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--accent);
+  color: #0f172a;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: 1000;
+}
+
+#toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-heading">
+                <img class="avatar" src="https://api.dicebear.com/9.x/initials/svg?seed=Ostap"
+                    alt="Остап's avatar" width="96" height="96" />
+                <div>
+                    <span class="badge" aria-label="Profile role">Profile • Student</span>
+                    <h1 class="title">Остап</h1>
+                    <p class="subtitle">Student at SuperClass and IT Step School in Rivne, learning web development and playing guitar.</p>
+                </div>
+            </div>
+            <div class="toolbar">
+                <button class="btn">
+                    <a class="clear-styles" href="../../index.html">Back Home</a>
+                </button>
+                <button id="copyLink" class="btn" aria-label="Copy shareable link">Copy Link</button>
+                <button id="toggleContrast" class="btn ghost" aria-label="Toggle high contrast">Toggle Contrast</button>
+            </div>
+
+        </header>
+
+        <section class="grid">
+            <article class="card span-8">
+                <h2>About Me</h2>
+                <p>I'm a student at IT Step School and SuperClass in Rivne, working through the web development track. I enjoy building small projects, practicing my skills, and playing guitar.</p>
+                <div class="callout" role="note">
+                    <strong>Currently learning:</strong> JavaScript fundamentals, web development, and Git workflows.
+                </div>
+            </article>
+
+            <aside class="card span-4">
+                <h2>Quick Facts</h2>
+                <ul>
+                    <li>Track: <span class="kbd">Web Development</span></li>
+                    <li>School: <span class="kbd">IT Step School</span></li>
+                    <li>City: <span class="kbd">Рівне</span></li>
+                    <li>Teacher: <span class="kbd">Vlad Tymoshchuk</span></li>
+                    <li>Email: <span class="kbd">ostap@superclass.edu</span></li>
+                </ul>
+            </aside>
+            <article class="card span-12">
+                <h2>Фотогалерея проєктів та досягнень</h2>
+                <div class="carousel-container" id="photoCarousel">
+                    <button class="carousel-btn prev" aria-label="Попереднє фото">&#10094;</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_1dluam1dluam1dlu.jpg" alt="Проєкт 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_6ekfsn6ekfsn6ekf.jpg" alt="Проєкт 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_e1lcide1lcide1lc (1).jpg" alt="Проєкт 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_xz2k7hxz2k7hxz2k.jpg" alt="Проєкт 4">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images (2) (1).jpg" alt="Остап">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Наступне фото">&#10095;</button>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </article>
+
+            <article class="card span-12">
+                <h2>Background</h2>
+                <div class="tabs" id="profileTabs">
+                    <div class="tablist" role="tablist" aria-label="Profile sections">
+                        <button class="tab" role="tab" aria-controls="tab-edu" data-tab="edu">Education</button>
+                        <button class="tab" role="tab" aria-controls="tab-skills" data-tab="skills">Skills</button>
+                        <button class="tab" role="tab" aria-controls="tab-projects" data-tab="projects">Projects</button>
+                        <button class="tab" role="tab" aria-controls="tab-contact" data-tab="contact">Contact</button>
+                    </div>
+
+                    <section class="tabpanel" id="tab-edu" role="tabpanel" aria-labelledby="edu">
+                        <h3>Education</h3>
+                        <ul>
+                            <li>Enrolled in IT Step School (Рівне)</li>
+                            <li>Enrolled in SuperClass — Web Development Track (2026–present)</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-skills" role="tabpanel" aria-labelledby="skills">
+                        <h3>Skills</h3>
+                        <div class="pill-list" aria-label="Skills">
+                            <span class="pill">HTML</span>
+                            <span class="pill">CSS</span>
+                            <span class="pill">JavaScript (learning)</span>
+                            <span class="pill">Git & GitHub</span>
+                            <span class="pill">Guitar</span>
+                        </div>
+                    </section>
+
+                    <section class="tabpanel" id="tab-projects" role="tabpanel" aria-labelledby="projects">
+                        <h3>Projects</h3>
+                        <ul>
+                            <li>Personal portfolio page built with HTML & CSS</li>
+                            <li>To-do list app built with vanilla JavaScript</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="contact">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li>Email: ostap@superclass.edu</li>
+                            <li>City: Рівне</li>
+                            <li>Class: Web Development Track</li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Interests</h2>
+                <div class="pill-list" aria-label="Interests">
+                    <span class="pill">Coding</span>
+                    <span class="pill">Guitar</span>
+                    <span class="pill">Gaming</span>
+                    <span class="pill">Open Source</span>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Courses Enrolled</h2>
+                <div class="pill-list" aria-label="Courses">
+                    <span class="pill">HTML & CSS</span>
+                    <span class="pill">JS Fundamentals</span>
+                    <span class="pill">Git & GitHub</span>
+                </div>
+            </article>
+        </section>
+
+        <footer>
+            <p>© 2026 SuperClass. Student Profile — Остап (Рівне).</p>
+        </footer>
+    </div>
+
+    <script>
+        // 1. Покращена кнопка копіювання посилання
+        const copyBtn = document.getElementById('copyLink');
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(location.href);
+                const old = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                copyBtn.style.borderColor = 'var(--brand)';
+                setTimeout(() => {
+                    copyBtn.textContent = old;
+                    copyBtn.style.borderColor = '';
+                }, 1500);
+            } catch { }
+        });
+
+        // 2. Збереження контрастної теми в localStorage
+        const toggleBtn = document.getElementById('toggleContrast');
+        let high = localStorage.getItem('highContrast') === 'true';
+
+        function applyTheme(isHigh) {
+            document.documentElement.style.setProperty('--bg', isHigh ? '#05070f' : '');
+            document.documentElement.style.setProperty('--card', isHigh ? '#0a0f22' : '');
+            document.documentElement.style.setProperty('--card-2', isHigh ? '#0b1020' : '');
+            document.documentElement.style.setProperty('--text', isHigh ? '#f2f6ff' : '');
+            document.documentElement.style.setProperty('--border', isHigh ? '#243463' : '');
+        }
+        
+        // Застосовуємо тему при завантаженні
+        applyTheme(high);
+
+        toggleBtn.addEventListener('click', () => {
+            high = !high;
+            localStorage.setItem('highContrast', high);
+            applyTheme(high);
+        });
+
+        // 3. Інтерактивні вкладки (Tabs)
+        const tabsRoot = document.getElementById('profileTabs');
+        const tabs = Array.from(tabsRoot.querySelectorAll('.tab'));
+        const panels = Array.from(tabsRoot.querySelectorAll('.tabpanel'));
+        
+        function activate(id) {
+            tabs.forEach(t => t.dataset.active = (t.dataset.tab === id));
+            panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + id));
+        }
+        tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+        activate('edu');
+
+        // 4. Покращена карусель (з автопрокруткою та управлінням з клавіатури)
+        const carousel = document.getElementById('photoCarousel');
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextButton = document.querySelector('.carousel-btn.next');
+        const prevButton = document.querySelector('.carousel-btn.prev');
+        const dotsContainer = document.getElementById('carouselDots');
+        let currentIndex = 0;
+        let slideInterval;
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                moveToSlide(index);
+                resetInterval();
+            });
+            dotsContainer.appendChild(dot);
+        });
+        const dots = Array.from(dotsContainer.children);
+
+        function updateDots(index) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function moveToSlide(index) {
+            if (index < 0) {
+                currentIndex = slides.length - 1;
+            } else if (index >= slides.length) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots(currentIndex);
+        }
+
+        nextButton.addEventListener('click', () => {
+            moveToSlide(currentIndex + 1);
+            resetInterval();
+        });
+
+        prevButton.addEventListener('click', () => {
+            moveToSlide(currentIndex - 1);
+            resetInterval();
+        });
+
+        // Керування стрілками клавіатури, якщо карусель у фокусі або наведені
+        carousel.setAttribute('tabindex', '0');
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                moveToSlide(currentIndex + 1);
+                resetInterval();
+            } else if (e.key === 'ArrowLeft') {
+                moveToSlide(currentIndex - 1);
+                resetInterval();
+            }
+        });
+
+        // Автопрокрутка кожні 4 секунди
+        function startInterval() {
+            slideInterval = setInterval(() => {
+                moveToSlide(currentIndex + 1);
+            }, 4000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        // Зупинка автопрокрутки при наведенні миші
+        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        carousel.addEventListener('mouseleave', () => startInterval());
+
+        startInterval();
+
+        // 5. Ефект плавного ظهور (fade-in) карток при прокручуванні
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
+    </style>
+</head>
+
+<body>
+    <!-- Фіксований контейнер для шестерень на тлі -->
+<div class="gears-bg" aria-hidden="true">
+    <!-- Велика шестерня (за годинниковою стрілкою) -->
+    <svg class="gear gear-large" viewBox="0 0 100 100">
+        <path d="M50 35a15 15 0 1 0 0 30 15 15 0 0 0 0-30zm0-10a25 25 0 1 1 0 50 25 25 0 0 1 0-50zm-5-15h10v12H45V10zm0 68h10v12H45V78zm33-33v10H66V45h12zM10 45h12v10H10V45zm54.5-22.1l7.1 7.1-8.5 8.5-7.1-7.1 8.5-8.5zM22.9 64.5l7.1 7.1-8.5 8.5-7.1-7.1 8.5-8.5zm48.7 14.1l7.1-7.1-8.5-8.5-7.1 7.1 8.5 8.5zM22.9 22.9l7.1-7.1 8.5 8.5-7.1 7.1-8.5-8.5z" />
+    </svg>
+
+    <!-- Мала шестерня (проти годинникової стрілки) -->
+    <svg class="gear gear-small" viewBox="0 0 100 100">
+        <path d="M50 35a15 15 0 1 0 0 30 15 15 0 0 0 0-30zm0-10a25 25 0 1 1 0 50 25 25 0 0 1 0-50zm-5-15h10v12H45V10zm0 68h10v12H45V78zm33-33v10H66V45h12zM10 45h12v10H10V45zm54.5-22.1l7.1 7.1-8.5 8.5-7.1-7.1 8.5-8.5zM22.9 64.5l7.1 7.1-8.5 8.5-7.1-7.1 8.5-8.5zm48.7 14.1l7.1-7.1-8.5-8.5-7.1 7.1 8.5 8.5zM22.9 22.9l7.1-7.1 8.5 8.5-7.1 7.1-8.5-8.5z" />
+    </svg>
+</div>
+    <div class="container">
+        <header>
+            <div class="profile-heading">
+                <img class="avatar" src="https://api.dicebear.com/9.x/initials/svg?seed=Ostap"
+                    alt="Остап's avatar" width="96" height="96" />
+                <div>
+                    <span class="badge" aria-label="Profile role">Profile • Student</span>
+                    <h1 class="title">Остап</h1>
+                    <p class="subtitle">Student at SuperClass and IT Step School in Rivne, learning web development and playing guitar.</p>
+                </div>
+            </div>
+            <div class="toolbar">
+                <button class="btn">
+                    <a class="clear-styles" href="../../index.html">Back Home</a>
+                </button>
+                <button id="copyLink" class="btn" aria-label="Copy shareable link">Copy Link</button>
+                <button id="toggleContrast" class="btn ghost" aria-label="Toggle high contrast">Toggle Contrast</button>
+            </div>
+
+        </header>
+
+        <section class="grid">
+            <article class="card span-8">
+                <h2>About Me</h2>
+                <p>I'm a student at IT Step School and SuperClass in Rivne, working through the web development track. I enjoy building small projects, practicing my skills, and playing guitar.</p>
+                <div class="callout" role="note">
+                    <strong>Currently learning:</strong> JavaScript fundamentals, web development, and Git workflows.
+                </div>
+            </article>
+
+            <aside class="card span-4">
+                <h2>Quick Facts</h2>
+                <ul>
+                    <li>Track: <span class="kbd">Web Development</span></li>
+                    <li>School: <span class="kbd">IT Step School</span></li>
+                    <li>City: <span class="kbd">Рівне</span></li>
+                    <li>Teacher: <span class="kbd">Vlad Tymoshchuk</span></li>
+                    <li>Email: <span class="kbd">ostap@superclass.edu</span></li>
+                </ul>
+            </aside>
+            <article class="card span-12">
+                <h2>Фотогалерея проєктів та досягнень</h2>
+                <div class="carousel-container" id="photoCarousel">
+                    <button class="carousel-btn prev" aria-label="Попереднє фото">&#10094;</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_1dluam1dluam1dlu.jpg" alt="Проєкт 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_6ekfsn6ekfsn6ekf.jpg" alt="Проєкт 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_e1lcide1lcide1lc (1).jpg" alt="Проєкт 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_xz2k7hxz2k7hxz2k.jpg" alt="Проєкт 4">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images (2) (1).jpg" alt="Остап">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Наступне фото">&#10095;</button>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </article>
+
+            <article class="card span-12">
+                <h2>Background</h2>
+                <div class="tabs" id="profileTabs">
+                    <div class="tablist" role="tablist" aria-label="Profile sections">
+                        <button class="tab" role="tab" aria-controls="tab-edu" data-tab="edu">Education</button>
+                        <button class="tab" role="tab" aria-controls="tab-skills" data-tab="skills">Skills</button>
+                        <button class="tab" role="tab" aria-controls="tab-projects" data-tab="projects">Projects</button>
+                        <button class="tab" role="tab" aria-controls="tab-contact" data-tab="contact">Contact</button>
+                    </div>
+
+                    <section class="tabpanel" id="tab-edu" role="tabpanel" aria-labelledby="edu">
+                        <h3>Education</h3>
+                        <ul>
+                            <li>Enrolled in IT Step School (Рівне)</li>
+                            <li>Enrolled in SuperClass — Web Development Track (2026–present)</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-skills" role="tabpanel" aria-labelledby="skills">
+                        <h3>Skills</h3>
+                        <div class="pill-list" aria-label="Skills">
+                            <span class="pill">HTML</span>
+                            <span class="pill">CSS</span>
+                            <span class="pill">JavaScript (learning)</span>
+                            <span class="pill">Git & GitHub</span>
+                            <span class="pill">Guitar</span>
+                        </div>
+                    </section>
+
+                    <section class="tabpanel" id="tab-projects" role="tabpanel" aria-labelledby="projects">
+                        <h3>Projects</h3>
+                        <ul>
+                            <li>Personal portfolio page built with HTML & CSS</li>
+                            <li>To-do list app built with vanilla JavaScript</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="contact">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li>Email: ostap@superclass.edu</li>
+                            <li>City: Рівне</li>
+                            <li>Class: Web Development Track</li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Interests</h2>
+                <div class="pill-list" aria-label="Interests">
+                    <span class="pill">Coding</span>
+                    <span class="pill">Guitar</span>
+                    <span class="pill">Gaming</span>
+                    <span class="pill">Open Source</span>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Courses Enrolled</h2>
+                <div class="pill-list" aria-label="Courses">
+                    <span class="pill">HTML & CSS</span>
+                    <span class="pill">JS Fundamentals</span>
+                    <span class="pill">Git & GitHub</span>
+                </div>
+            </article>
+        </section>
+
+        <footer>
+            <p>© 2026 SuperClass. Student Profile — Остап (Рівне).</p>
+        </footer>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    // 1. Система спливаючих сповіщень (Toast System)
+    const toast = document.createElement('div');
+    toast.id = 'toast';
+    document.body.appendChild(toast);
+
+    function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // 2. Копіювання посилання
+    const copyBtn = document.getElementById('copyLink');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                showToast('Посилання скопійовано в буфер!');
+            } catch {
+                showToast('Помилка при копіюванні');
+            }
+        });
+    }
+
+    // 3. Зміна теми та збереження у localStorage
+    const toggleBtn = document.getElementById('toggleContrast');
+    let high = localStorage.getItem('highContrast') === 'true';
+
+    function applyTheme(isHigh) {
+        document.documentElement.style.setProperty('--bg', isHigh ? '#030712' : '#0f172a');
+        document.documentElement.style.setProperty('--card', isHigh ? 'rgba(15, 23, 42, 0.95)' : 'rgba(30, 41, 59, 0.7)');
+        document.documentElement.style.setProperty('--border', isHigh ? 'rgba(56, 189, 248, 0.4)' : 'rgba(255, 255, 255, 0.1)');
+    }
+
+    applyTheme(high);
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            high = !high;
+            localStorage.setItem('highContrast', high);
+            applyTheme(high);
+            showToast(high ? 'Увімкнено контрастну тему' : 'Стандартна тема');
+        });
+    }
+
+    // 4. Інтерактивні вкладки (Tabs)
+    const tabsRoot = document.getElementById('profileTabs');
+    if (tabsRoot) {
+        const tabs = Array.from(tabsRoot.querySelectorAll('.tab'));
+        const panels = Array.from(tabsRoot.querySelectorAll('.tabpanel'));
+
+        function activateTab(id) {
+            tabs.forEach(t => t.setAttribute('data-active', t.dataset.tab === id));
+            panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + id));
+        }
+
+        tabs.forEach(t => t.addEventListener('click', () => activateTab(t.dataset.tab)));
+        activateTab('edu');
+    }
+
+    // 5. Карусель із підтримкою Swipe (Мобільні) та клавіатури
+    const carousel = document.getElementById('photoCarousel');
+    if (carousel) {
+        const track = carousel.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextButton = carousel.querySelector('.carousel-btn.next');
+        const prevButton = carousel.querySelector('.carousel-btn.prev');
+        const dotsContainer = document.getElementById('carouselDots');
+        let currentIndex = 0;
+        let slideInterval;
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                moveToSlide(index);
+                resetInterval();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsContainer.children);
+
+        function updateDots(index) {
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        }
+
+        function moveToSlide(index) {
+            if (index < 0) currentIndex = slides.length - 1;
+            else if (index >= slides.length) currentIndex = 0;
+            else currentIndex = index;
+
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots(currentIndex);
+        }
+
+        nextButton.addEventListener('click', () => { moveToSlide(currentIndex + 1); resetInterval(); });
+        prevButton.addEventListener('click', () => { moveToSlide(currentIndex - 1); resetInterval(); });
+
+        // Управління клавіатурою
+        carousel.setAttribute('tabindex', '0');
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') { moveToSlide(currentIndex + 1); resetInterval(); }
+            if (e.key === 'ArrowLeft') { moveToSlide(currentIndex - 1); resetInterval(); }
+        });
+
+        // Підтримка свайпів на тачскрінах
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) { moveToSlide(currentIndex + 1); resetInterval(); }
+            if (touchEndX - touchStartX > 50) { moveToSlide(currentIndex - 1); resetInterval(); }
+        }, { passive: true });
+
+        // Автопрокрутка
+        function startInterval() {
+            slideInterval = setInterval(() => moveToSlide(currentIndex + 1), 4000);
+        }
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        carousel.addEventListener('mouseleave', () => startInterval());
+
+        startInterval();
+    }
+
+    // 6. Ефект появу та 3D Tilt під час наведення на картку
+    const cards = document.querySelectorAll('.card');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(24px)';
+        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.3s, box-shadow 0.3s';
+        observer.observe(card);
+
+        // 3D Tilt-ефект при русі мишки по картці
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            card.style.transform = `perspective(1000px) rotateX(${-y / 30}deg) rotateY(${x / 30}deg) translateY(0)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        });
+    });
+});
+    </script>
+</body>
+
+</html>
