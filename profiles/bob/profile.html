@@ -1,161 +1,1216 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bob — Student Profile | SuperClass</title>
-    <meta name="description" content="Student profile for Bob at SuperClass." />
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CLARK — BACKROOMS ARCHIVE</title>
+
+    <meta name="description" content="Classified archive file concerning Clark.">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at center, rgba(255, 225, 100, 0.08), transparent 55%),
+                #15130d;
+            color: #d8d1a3;
+            font-family: "Share Tech Mono", monospace;
+            min-height: 100vh;
+        }
+
+        /* VHS noise */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.08;
+
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.08) 3px
+                );
+
+            animation: scanlines 0.15s infinite;
+        }
+
+        @keyframes scanlines {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(3px);
+            }
+        }
+
+        /* Main container */
+
+        .container {
+            width: min(1150px, 92%);
+            margin: 40px auto;
+        }
+
+        /* Header */
+
+        header {
+            position: relative;
+            padding: 30px;
+            border: 1px solid #70652c;
+            background:
+                linear-gradient(
+                    rgba(80, 70, 30, 0.2),
+                    rgba(20, 18, 10, 0.85)
+                );
+
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.7),
+                inset 0 0 30px rgba(255, 220, 80, 0.03);
+        }
+
+        .classified {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+
+            color: #a32920;
+            border: 1px solid #8d2c26;
+            padding: 5px 10px;
+
+            font-size: 12px;
+            letter-spacing: 2px;
+
+            transform: rotate(-3deg);
+        }
+
+        .profile-heading {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+
+            object-fit: cover;
+
+            border: 2px solid #91852e;
+
+            filter:
+                grayscale(0.8)
+                sepia(0.25)
+                contrast(1.2);
+
+            box-shadow:
+                0 0 25px rgba(0, 0, 0, 0.8);
+        }
+
+        .badge {
+            color: #9e963c;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+        .title {
+            margin: 8px 0;
+
+            color: #ddd49b;
+
+            font-size: clamp(38px, 7vw, 70px);
+            letter-spacing: 8px;
+
+            text-shadow:
+                3px 0 #8b261e,
+                -2px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .subtitle {
+            max-width: 700px;
+            color: #8e896d;
+            line-height: 1.7;
+        }
+
+        /* Buttons */
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            font-family: inherit;
+
+            background: #201e14;
+            color: #b9b16c;
+
+            border: 1px solid #615a2a;
+
+            padding: 10px 15px;
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #39351c;
+            color: #e6dc9c;
+            border-color: #a59a42;
+        }
+
+        .clear-styles {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Grid */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .card {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(70, 64, 25, 0.25),
+                    rgba(15, 14, 10, 0.95)
+                );
+
+            border: 1px solid #4e4824;
+            padding: 25px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.45),
+                inset 0 0 40px rgba(255, 220, 70, 0.025);
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        .span-6 {
+            grid-column: span 6;
+        }
+
+        .span-8 {
+            grid-column: span 8;
+        }
+
+        .span-12 {
+            grid-column: span 12;
+        }
+
+        h2 {
+            margin-top: 0;
+
+            color: #c9bf76;
+
+            font-size: 18px;
+            letter-spacing: 3px;
+
+            border-bottom: 1px solid #403b20;
+            padding-bottom: 12px;
+        }
+
+        h3 {
+            color: #aaa25e;
+        }
+
+        p,
+        li {
+            color: #918b6d;
+            line-height: 1.7;
+        }
+
+        /* Warning */
+
+        .warning {
+            border-left: 3px solid #9d3027;
+            padding: 15px 18px;
+            margin-top: 20px;
+
+            background: rgba(100, 25, 20, 0.08);
+        }
+
+        .warning strong {
+            color: #b54237;
+        }
+
+        /* Facts */
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .kbd {
+            color: #c8bd6e;
+
+            border: 1px solid #4c4625;
+            padding: 3px 6px;
+
+            background: #19180f;
+        }
+
+        /* Tabs */
+
+        .tablist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            font-family: inherit;
+
+            background: #17160e;
+            color: #777354;
+
+            border: 1px solid #403b20;
+
+            padding: 10px 14px;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            color: #c6bc6d;
+        }
+
+        .tab[data-active="true"] {
+            color: #d9cf83;
+            background: #312e18;
+            border-color: #756b2f;
+        }
+
+        .tabpanel {
+            display: none;
+        }
+
+        .tabpanel.active {
+            display: block;
+        }
+
+        /* Gallery */
+
+        .gallery {
+            position: relative;
+
+            width: 100%;
+            height: 500px;
+
+            background: #090906;
+
+            border: 1px solid #494323;
+
+            overflow: hidden;
+        }
+
+        .gallery-images {
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-image {
+            display: none;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            filter:
+                grayscale(0.35)
+                sepia(0.2)
+                contrast(1.1);
+        }
+
+        .gallery-image.active {
+            display: block;
+        }
+
+        .gallery-btn {
+            position: absolute;
+
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 55px;
+            height: 80px;
+
+            border: 1px solid #70652d;
+
+            background: rgba(10, 9, 5, 0.7);
+
+            color: #d0c579;
+
+            font-family: inherit;
+            font-size: 42px;
+
+            cursor: pointer;
+
+            z-index: 5;
+        }
+
+        .gallery-btn:hover {
+            background: rgba(70, 63, 25, 0.8);
+        }
+
+        .gallery-btn.prev {
+            left: 15px;
+        }
+
+        .gallery-btn.next {
+            right: 15px;
+        }
+
+        .gallery-counter {
+            text-align: center;
+            margin-top: 10px;
+
+            color: #625f48;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* Log */
+
+        .log {
+            font-size: 13px;
+            color: #777258;
+
+            background: #0b0a07;
+
+            border: 1px solid #302d1a;
+
+            padding: 18px;
+
+            line-height: 1.8;
+        }
+
+        .redacted {
+            background: #080807;
+            color: #080807;
+            padding: 0 5px;
+        }
+
+        .redacted:hover {
+            color: #777258;
+        }
+
+        /* Footer */
+
+        footer {
+            margin: 30px 0;
+            text-align: center;
+
+            color: #514e3b;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 800px) {
+
+            .profile-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .span-4,
+            .span-6,
+            .span-8,
+            .span-12 {
+                grid-column: span 12;
+            }
+
+            .gallery {
+                height: 350px;
+            }
+
+            .classified {
+                position: static;
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+
     <div class="container">
+
+        <!-- HEADER -->
+
         <header>
-            <div class="profile-heading">
-                <img class="avatar" src="https://api.dicebear.com/9.x/initials/svg?seed=Bob"
-                    alt="Bob's avatar" width="96" height="96" />
-                <div>
-                    <span class="badge" aria-label="Profile role">Profile • Student</span>
-                    <h1 class="title">Bob</h1>
-                    <p class="subtitle">Student at SuperClass, learning web development and getting comfortable with
-                        HTML, CSS, and JavaScript.</p>
-                </div>
+
+            <div class="classified">
+                CLASSIFIED
             </div>
+
+            <div class="profile-heading">
+
+                <img
+                    class="avatar"
+                    src="clarkacceptance_2.webp"
+                    alt="Clark"
+                >
+
+                <div>
+
+                    <span class="badge">
+                        BACKROOMS ARCHIVE • PERSONNEL FILE
+                    </span>
+
+                    <h1 class="title">
+                        CLARK
+                    </h1>
+
+                    <p class="subtitle">
+                        SUBJECT IDENTIFICATION FILE — LEVEL UNKNOWN
+                    </p>
+
+                </div>
+
+            </div>
+
             <div class="toolbar">
+
                 <button class="btn">
-                    <a class="clear-styles" href="../../index.html">Back Home</a>
+                    <a
+                        class="clear-styles"
+                        href="../../index.html"
+                    >
+                        ← EXIT ARCHIVE
+                    </a>
                 </button>
-                <button id="copyLink" class="btn" aria-label="Copy shareable link">Copy Link</button>
-                <button id="toggleContrast" class="btn ghost" aria-label="Toggle high contrast">Toggle Contrast</button>
+
+                <button
+                    id="copyLink"
+                    class="btn"
+                >
+                    COPY FILE LINK
+                </button>
+
+                <button
+                    id="toggleContrast"
+                    class="btn"
+                >
+                    NIGHT VISION
+                </button>
+
             </div>
 
         </header>
 
+
         <section class="grid">
+
+
+            <!-- ABOUT -->
+
             <article class="card span-8">
-                <h2>About Me</h2>
-                <p>I'm a student at SuperClass working through the web development track. I enjoy building small
-                    projects to practice what I learn in class and figuring out how things work under the hood.</p>
-                <div class="callout" role="note">
-                    <strong>Currently learning:</strong> JavaScript fundamentals and Git workflows.
+
+                <h2>
+                    SUBJECT OVERVIEW
+                </h2>
+
+                <p>
+                    Clark is an individual documented during an
+                    investigation into an unidentified environment.
+                    His current location remains unknown.
+                </p>
+
+                <p>
+                    Available footage suggests that Clark has spent
+                    an extended period inside the Backrooms.
+                </p>
+
+                <div class="warning">
+
+                    <strong>
+                        WARNING:
+                    </strong>
+
+                    Do not assume that the environment shown in
+                    recovered footage is safe.
+
                 </div>
+
             </article>
+
+
+            <!-- FACTS -->
 
             <aside class="card span-4">
-                <h2>Quick Facts</h2>
+
+                <h2>
+                    SUBJECT DATA
+                </h2>
+
                 <ul>
-                    <li>Track: <span class="kbd">Web Development</span></li>
-                    <li>Year: <span class="kbd">1st Year</span></li>
-                    <li>Teacher: <span class="kbd">Vlad Tymoshchuk</span></li>
-                    <li>Email: <span class="kbd">bob@superclass.edu</span></li>
+
+                    <li>
+                        Name:
+                        <span class="kbd">Clark</span>
+                    </li>
+
+                    <li>
+                        Status:
+                        <span class="kbd">UNKNOWN</span>
+                    </li>
+
+                    <li>
+                        Location:
+                        <span class="kbd">LEVEL ?</span>
+                    </li>
+
+                    <li>
+                        Last Contact:
+                        <span class="kbd">LOST</span>
+                    </li>
+
+                    <li>
+                        File:
+                        <span class="kbd">CLARK-01</span>
+                    </li>
+
                 </ul>
+
             </aside>
 
+
+            <!-- BACKGROUND -->
+
             <article class="card span-12">
-                <h2>Background</h2>
-                <div class="tabs" id="profileTabs">
-                    <div class="tablist" role="tablist" aria-label="Profile sections">
-                        <button class="tab" role="tab" aria-controls="tab-edu" data-tab="edu">Education</button>
-                        <button class="tab" role="tab" aria-controls="tab-skills" data-tab="skills">Skills</button>
-                        <button class="tab" role="tab" aria-controls="tab-projects" data-tab="projects">Projects</button>
-                        <button class="tab" role="tab" aria-controls="tab-contact" data-tab="contact">Contact</button>
+
+                <h2>
+                    INVESTIGATION RECORD
+                </h2>
+
+                <div
+                    class="tabs"
+                    id="profileTabs"
+                >
+
+                    <div
+                        class="tablist"
+                        role="tablist"
+                    >
+
+                        <button
+                            class="tab"
+                            data-tab="history"
+                        >
+                            HISTORY
+                        </button>
+
+                        <button
+                            class="tab"
+                            data-tab="behavior"
+                        >
+                            OBSERVATIONS
+                        </button>
+
+                        <button
+                            class="tab"
+                            data-tab="incident"
+                        >
+                            INCIDENT
+                        </button>
+
+                        <button
+                            class="tab"
+                            data-tab="status"
+                        >
+                            STATUS
+                        </button>
+
                     </div>
 
-                    <section class="tabpanel" id="tab-edu" role="tabpanel" aria-labelledby="edu">
-                        <h3>Education</h3>
-                        <ul>
-                            <li>Enrolled in SuperClass — Web Development Track (2026–present)</li>
-                        </ul>
+
+                    <!-- HISTORY -->
+
+                    <section
+                        class="tabpanel"
+                        id="tab-history"
+                    >
+
+                        <h3>
+                            SUBJECT HISTORY
+                        </h3>
+
+                        <p>
+                            Very little verified information exists
+                            regarding Clark's activities prior to the
+                            incident.
+                        </p>
+
+                        <p>
+                            Recovered recordings indicate that the
+                            subject entered an anomalous interior
+                            environment and subsequently became
+                            separated from the original expedition.
+                        </p>
+
                     </section>
 
-                    <section class="tabpanel" id="tab-skills" role="tabpanel" aria-labelledby="skills">
-                        <h3>Skills</h3>
-                        <div class="pill-list" aria-label="Skills">
-                            <span class="pill">HTML</span>
-                            <span class="pill">CSS</span>
-                            <span class="pill">JavaScript (learning)</span>
-                            <span class="pill">Git & GitHub</span>
+
+                    <!-- OBSERVATIONS -->
+
+                    <section
+                        class="tabpanel"
+                        id="tab-behavior"
+                    >
+
+                        <h3>
+                            OBSERVATIONS
+                        </h3>
+
+                        <ul>
+
+                            <li>
+                                Subject appears capable of navigating
+                                unfamiliar areas.
+                            </li>
+
+                            <li>
+                                Subject demonstrates awareness of
+                                environmental anomalies.
+                            </li>
+
+                            <li>
+                                Recorded behavior indicates prolonged
+                                exposure to isolation.
+                            </li>
+
+                            <li>
+                                Additional information:
+                                <span class="redacted">
+                                    REDACTED
+                                </span>
+                            </li>
+
+                        </ul>
+
+                    </section>
+
+
+                    <!-- INCIDENT -->
+
+                    <section
+                        class="tabpanel"
+                        id="tab-incident"
+                    >
+
+                        <h3>
+                            INCIDENT REPORT
+                        </h3>
+
+                        <div class="log">
+
+                            [LOG 01:14:22]
+
+                            <br>
+
+                            Audio recording begins.
+
+                            <br><br>
+
+                            [UNKNOWN VOICE]
+
+                            <br>
+
+                            "Clark? Can you hear me?"
+
+                            <br><br>
+
+                            [STATIC]
+
+                            <br>
+
+                            "Don't go down that hallway."
+
+                            <br><br>
+
+                            [SIGNAL LOST]
+
                         </div>
+
                     </section>
 
-                    <section class="tabpanel" id="tab-projects" role="tabpanel" aria-labelledby="projects">
-                        <h3>Projects</h3>
-                        <ul>
-                            <li>Personal portfolio page built with HTML & CSS</li>
-                            <li>To-do list app built with vanilla JavaScript</li>
-                        </ul>
+
+                    <!-- STATUS -->
+
+                    <section
+                        class="tabpanel"
+                        id="tab-status"
+                    >
+
+                        <h3>
+                            CURRENT STATUS
+                        </h3>
+
+                        <p>
+                            <strong>
+                                LOCATION:
+                            </strong>
+                            UNKNOWN
+                        </p>
+
+                        <p>
+                            <strong>
+                                COMMUNICATION:
+                            </strong>
+                            NONE
+                        </p>
+
+                        <p>
+                            <strong>
+                                RECOVERY:
+                            </strong>
+                            UNSUCCESSFUL
+                        </p>
+
                     </section>
 
-                    <section class="tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="contact">
-                        <h3>Contact</h3>
-                        <ul>
-                            <li>Email: bob@superclass.edu</li>
-                            <li>Class: Web Development Track</li>
-                        </ul>
-                    </section>
                 </div>
+
             </article>
+
+
+            <!-- GALLERY -->
+
+            <article class="card span-12">
+
+                <h2>
+                    RECOVERED FOOTAGE
+                </h2>
+
+                <p>
+                    Selected frames recovered from damaged recording
+                    equipment.
+                </p>
+
+                <div class="gallery">
+
+                    <button
+                        class="gallery-btn prev"
+                        onclick="previousImage()"
+                    >
+                        ‹
+                    </button>
+
+                    <div class="gallery-images">
+
+                        <img
+                            src="image1.jpg"
+                            class="gallery-image active"
+                            alt="Recovered footage 01"
+                        >
+
+                        <img
+                            src="image2.jpg"
+                            class="gallery-image"
+                            alt="Recovered footage 02"
+                        >
+
+                        <img
+                            src="image3.jpg"
+                            class="gallery-image"
+                            alt="Recovered footage 03"
+                        >
+
+                        <img
+                            src="image4.jpg"
+                            class="gallery-image"
+                            alt="Recovered footage 04"
+                        >
+
+                    </div>
+
+                    <button
+                        class="gallery-btn next"
+                        onclick="nextImage()"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+                <div class="gallery-counter">
+                    FRAME <span id="galleryCounter">01 / 04</span>
+                </div>
+
+            </article>
+
+
+            <!-- ENVIRONMENT -->
 
             <article class="card span-6">
-                <h2>Interests</h2>
-                <div class="pill-list" aria-label="Interests">
-                    <span class="pill">Coding</span>
-                    <span class="pill">Gaming</span>
-                    <span class="pill">Open Source</span>
+
+                <h2>
+                    ENVIRONMENT
+                </h2>
+
+                <p>
+                    The recovered footage depicts an apparently
+                    endless series of yellow rooms and corridors.
+                </p>
+
+                <div class="pill-list">
+
+                    <span class="kbd">
+                        YELLOW WALLPAPER
+                    </span>
+
+                    <span class="kbd">
+                        FLUORESCENT LIGHT
+                    </span>
+
+                    <span class="kbd">
+                        MOIST CARPET
+                    </span>
+
                 </div>
+
             </article>
 
+
+            <!-- WARNING -->
+
             <article class="card span-6">
-                <h2>Courses Enrolled</h2>
-                <div class="pill-list" aria-label="Courses">
-                    <span class="pill">HTML & CSS</span>
-                    <span class="pill">JS Fundamentals</span>
-                    <span class="pill">Git & GitHub</span>
+
+                <h2>
+                    FIELD NOTE
+                </h2>
+
+                <div class="log">
+
+                    If you hear something behind you:
+
+                    <br><br>
+
+                    DO NOT RUN.
+
+                    <br><br>
+
+                    DO NOT TURN AROUND.
+
+                    <br><br>
+
+                    [END OF NOTE]
+
                 </div>
+
             </article>
+
+
         </section>
 
+
         <footer>
-            <p>© 2026 SuperClass. Student Profile — Bob.</p>
+
+            BACKROOMS ARCHIVE // CLARK-01 //
+            ALL RECORDINGS ARE PROPERTY OF THE ARCHIVE
+
         </footer>
+
     </div>
 
+
     <script>
-        // Link copier
-        document.getElementById('copyLink').addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(location.href);
-                const btn = document.getElementById('copyLink');
-                const old = btn.textContent;
-                btn.textContent = 'Copied!';
-                setTimeout(() => btn.textContent = old, 1200);
-            } catch { }
-        });
 
-        // Contrast toggle (temporary CSS override)
-        const toggleBtn = document.getElementById('toggleContrast');
-        let high = false;
-        toggleBtn.addEventListener('click', () => {
-            high = !high;
-            document.documentElement.style.setProperty('--bg', high ? '#05070f' : '');
-            document.documentElement.style.setProperty('--card', high ? '#0a0f22' : '');
-            document.documentElement.style.setProperty('--card-2', high ? '#0b1020' : '');
-            document.documentElement.style.setProperty('--text', high ? '#f2f6ff' : '');
-            document.documentElement.style.setProperty('--border', high ? '#243463' : '');
-        });
+        /* =========================
+           COPY LINK
+        ========================= */
 
-        // Tabs logic
-        const tabsRoot = document.getElementById('profileTabs');
-        const tabs = Array.from(tabsRoot.querySelectorAll('.tab'));
-        const panels = Array.from(tabsRoot.querySelectorAll('.tabpanel'));
-        function activate(id) {
-            tabs.forEach(t => t.dataset.active = (t.dataset.tab === id));
-            panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + id));
+        document
+            .getElementById("copyLink")
+            .addEventListener("click", async () => {
+
+                try {
+
+                    await navigator.clipboard.writeText(
+                        location.href
+                    );
+
+                    const button =
+                        document.getElementById("copyLink");
+
+                    const oldText =
+                        button.textContent;
+
+                    button.textContent =
+                        "LINK COPIED";
+
+                    setTimeout(() => {
+
+                        button.textContent =
+                            oldText;
+
+                    }, 1200);
+
+                } catch {
+
+                    console.log(
+                        "Could not copy link."
+                    );
+
+                }
+
+            });
+
+
+        /* =========================
+           NIGHT VISION
+        ========================= */
+
+        const contrastButton =
+            document.getElementById(
+                "toggleContrast"
+            );
+
+        let nightVision = false;
+
+        contrastButton.addEventListener(
+            "click",
+            () => {
+
+                nightVision =
+                    !nightVision;
+
+                if (nightVision) {
+
+                    document.body.style.filter =
+                        "brightness(0.75) contrast(1.25) sepia(0.7)";
+
+                    contrastButton.textContent =
+                        "NORMAL VISION";
+
+                } else {
+
+                    document.body.style.filter =
+                        "";
+
+                    contrastButton.textContent =
+                        "NIGHT VISION";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           TABS
+        ========================= */
+
+        const tabs =
+            document.querySelectorAll(
+                ".tab"
+            );
+
+        const panels =
+            document.querySelectorAll(
+                ".tabpanel"
+            );
+
+        function activateTab(id) {
+
+            tabs.forEach(tab => {
+
+                tab.dataset.active =
+                    tab.dataset.tab === id;
+
+            });
+
+            panels.forEach(panel => {
+
+                panel.classList.toggle(
+                    "active",
+                    panel.id === "tab-" + id
+                );
+
+            });
+
         }
-        tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
-        activate('edu');
+
+        tabs.forEach(tab => {
+
+            tab.addEventListener(
+                "click",
+                () => {
+
+                    activateTab(
+                        tab.dataset.tab
+                    );
+
+                }
+            );
+
+        });
+
+        activateTab("history");
+
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        const galleryImages =
+            document.querySelectorAll(
+                ".gallery-image"
+            );
+
+        const galleryCounter =
+            document.getElementById(
+                "galleryCounter"
+            );
+
+        let currentImage = 0;
+
+
+        function showImage(index) {
+
+            galleryImages[
+                currentImage
+            ].classList.remove(
+                "active"
+            );
+
+            currentImage =
+                (index + galleryImages.length)
+                % galleryImages.length;
+
+            galleryImages[
+                currentImage
+            ].classList.add(
+                "active"
+            );
+
+            const number =
+                String(
+                    currentImage + 1
+                ).padStart(2, "0");
+
+            const total =
+                String(
+                    galleryImages.length
+                ).padStart(2, "0");
+
+            galleryCounter.textContent =
+                `${number} / ${total}`;
+
+        }
+
+
+        function nextImage() {
+
+            showImage(
+                currentImage + 1
+            );
+
+        }
+
+
+        function previousImage() {
+
+            showImage(
+                currentImage - 1
+            );
+
+        }
+
+
+        /* Keyboard controls */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "ArrowRight") {
+                    nextImage();
+                }
+
+                if (event.key === "ArrowLeft") {
+                    previousImage();
+                }
+
+            }
+        );
+
+
+        /* Mouse / touch swipe */
+
+        let touchStartX = 0;
+
+        const gallery =
+            document.querySelector(
+                ".gallery"
+            );
+
+        gallery.addEventListener(
+            "touchstart",
+            event => {
+
+                touchStartX =
+                    event.touches[0].clientX;
+
+            }
+        );
+
+        gallery.addEventListener(
+            "touchend",
+            event => {
+
+                const touchEndX =
+                    event.changedTouches[0].clientX;
+
+                const difference =
+                    touchStartX - touchEndX;
+
+                if (Math.abs(difference) > 50) {
+
+                    if (difference > 0) {
+                        nextImage();
+                    } else {
+                        previousImage();
+                    }
+
+                }
+
+            }
+        );
+
     </script>
+
 </body>
 
 </html>
+```
