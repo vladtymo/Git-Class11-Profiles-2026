@@ -10,26 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Підключення нашого зовнішнього файлу стилів -->
+    <!-- Підключення зовнішнього файлу стилів -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Підключення та налаштування Tailwind CSS -->
+    <!-- Підключення Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        darkbg: '#0B1120',
-                        cardbg: '#151E2E',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Підключення зовнішнього файлу JavaScript -->
+    <script src="script.js"></script>
 </head>
 <body class="text-slate-300 min-h-screen flex flex-col selection:bg-teal-500/30 selection:text-teal-200">
 
@@ -69,7 +56,7 @@
                 </p>
             </header>
 
-            <!-- Card Body (Details & Bio) -->
+            <!-- Card Body (Details, Bio & Extra Links) -->
             <div class="px-6 sm:px-8 py-8 space-y-6">
                 
                 <!-- Date of Birth Section -->
@@ -84,11 +71,18 @@
                 </section>
 
                 <!-- Biography Section -->
-                <section>
+                <section class="border-b border-slate-700/50 pb-6">
                     <h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Біографія</h2>
                     <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
                         Студент напрямку веб-розробки та дизайну в IT Step School. Захоплююсь створенням сучасних інтерфейсів (HTML, CSS, JavaScript), а у вільний час активно займаюся спортом та вивчаю фінансові ринки.
                     </p>
+                </section>
+
+                <!-- Teacher Link Section -->
+                <section class="text-center pt-2">
+                    <a href="#" class="inline-block text-sm text-teal-400 hover:text-teal-300 transition-colors duration-200 font-medium">
+                        <p>Get to know the teacher behind the class.</p>
+                    </a>
                 </section>
 
             </div>
