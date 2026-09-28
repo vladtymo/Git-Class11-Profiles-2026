@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максим - Профіль</title>
+    
+    <!-- Підключення шрифтів -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Підключення зовнішнього файлу стилів -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Підключення Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Підключення зовнішнього файлу JavaScript -->
+    <script src="script.js"></script>
+</head>
+<body class="text-slate-300 min-h-screen flex flex-col selection:bg-teal-500/30 selection:text-teal-200">
+
+    <!-- Top Navigation -->
+    <nav class="w-full p-6 md:p-8 max-w-7xl mx-auto flex items-center">
+        <a href="../../index.html" class="inline-flex items-center gap-2 text-slate-400 hover:text-teal-400 transition-colors duration-200 text-sm font-medium group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Profiles
+        </a>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-8">
+        
+        <!-- Profile Card -->
+        <div class="w-full max-w-md bg-cardbg rounded-xl border border-teal-500/30 shadow-lg hover:shadow-[0_0_20px_rgba(20,184,166,0.2)] hover:border-teal-500/60 transition-all duration-300">
+            
+            <!-- Card Header (Avatar & Name) -->
+            <header class="flex flex-col items-center pt-10 pb-8 px-6 border-b border-slate-700/50 relative">
+                
+                <!-- Decorative dot matching the main site status indicator -->
+                <div class="absolute top-6 left-6 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.6)]"></span>
+                    <span class="text-xs text-slate-500 font-medium">Student</span>
+                </div>
+
+                <!-- Avatar -->
+                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full mb-5 p-1 border-2 border-slate-700/50 bg-darkbg">
+                    <img src="https://ui-avatars.com/api/?name=M&background=0D9488&color=fff&size=128&font-size=0.4" alt="Максим" class="w-full h-full rounded-full object-cover">
+                </div>
+
+                <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Максим</h1>
+                <p class="text-slate-400 mt-2 text-sm text-center">
+                    Web Development Track
+                </p>
+            </header>
+
+            <!-- Card Body (Details, Bio & Extra Links) -->
+            <div class="px-6 sm:px-8 py-8 space-y-6">
+                
+                <!-- Date of Birth Section -->
+                <section class="border-b border-slate-700/50 pb-6">
+                    <h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Дата народження</h2>
+                    <p class="text-slate-200 font-medium flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-500/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        2010 рік
+                    </p>
+                </section>
+
+                <!-- Biography Section -->
+                <section class="border-b border-slate-700/50 pb-6">
+                    <h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Біографія</h2>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        Студент напрямку веб-розробки та дизайну в IT Step School. Захоплююсь створенням сучасних інтерфейсів (HTML, CSS, JavaScript), а у вільний час активно займаюся спортом та вивчаю фінансові ринки.
+                    </p>
+                </section>
+
+                <!-- Teacher Link Section -->
+                <section class="text-center pt-2">
+                    <a href="#" class="inline-block text-sm text-teal-400 hover:text-teal-300 transition-colors duration-200 font-medium">
+                        <p>Get to know the teacher behind the class.</p>
+                    </a>
+                </section>
+
+            </div>
+            
+            <!-- Card Footer Accent -->
+            <div class="h-1.5 w-full bg-gradient-to-r from-transparent via-teal-500/50 to-transparent opacity-50 rounded-b-xl"></div>
+        </div>
+
+    </main>
+
+</body>
+</html>

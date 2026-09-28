@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Остап — Student Profile | SuperClass (Рівне)</title>
+    <meta name="description" content="Student profile for Ostap at SuperClass." />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Виправлене підключення JavaScript -->
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <!-- Фонові анімовані шестерні -->
+    <div class="gears-bg" aria-hidden="true">
+        <svg class="gear gear-large" viewBox="0 0 100 100">
+            <path d="M50 35a15 15 0 1 0 0 30 15 15 0 0 0 0-30zm0-10a25 25 0 1 1 0 50 25 25 0 0 1 0-50zm-5-15h10v12H45V10zm0 68h10v12H45V78zm33-33v10H66V45h12zM10 45h12v10H10V45zm54.5-22.1l7.1 7.1-8.5 8.5-7.1-7.1 8.5-8.5zM22.9 64.5l7.1 7.1-8.5 8.5-7.1-7.1 8.5-8.5zm48.7 14.1l7.1-7.1-8.5-8.5-7.1 7.1 8.5 8.5zM22.9 22.9l7.1-7.1 8.5 8.5-7.1 7.1-8.5-8.5z" />
+        </svg>
+        <svg class="gear gear-small" viewBox="0 0 100 100">
+            <path d="M50 35a15 15 0 1 0 0 30 15 15 0 0 0 0-30zm0-10a25 25 0 1 1 0 50 25 25 0 0 1 0-50zm-5-15h10v12H45V10zm0 68h10v12H45V78zm33-33v10H66V45h12zM10 45h12v10H10V45zm54.5-22.1l7.1 7.1-8.5 8.5-7.1-7.1 8.5-8.5zM22.9 64.5l7.1 7.1-8.5 8.5-7.1-7.1 8.5-8.5zm48.7 14.1l7.1-7.1-8.5-8.5-7.1 7.1 8.5 8.5zM22.9 22.9l7.1-7.1 8.5 8.5-7.1 7.1-8.5-8.5z" />
+        </svg>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="profile-heading">
+                <img class="avatar" src="https://api.dicebear.com/9.x/initials/svg?seed=Ostap"
+                    alt="Остап's avatar" width="96" height="96" />
+                <div>
+                    <span class="badge" aria-label="Profile role">Profile • Student</span>
+                    <h1 class="title">Остап</h1>
+                    <p class="subtitle">Student at SuperClass and IT Step School in Rivne, learning web development and playing guitar.</p>
+                </div>
+            </div>
+            <div class="toolbar">
+                <button class="btn">
+                    <a class="clear-styles" href="../../index.html">Back Home</a>
+                </button>
+                <button id="copyLink" class="btn" aria-label="Copy shareable link">Copy Link</button>
+                <button id="toggleContrast" class="btn ghost" aria-label="Toggle high contrast">Toggle Contrast</button>
+            </div>
+        </header>
+
+        <section class="grid">
+            <article class="card span-8">
+                <h2>About Me</h2>
+                <p>I'm a student at IT Step School and SuperClass in Rivne, working through the web development track. I enjoy building small projects, practicing my skills, and playing guitar.</p>
+                <div class="callout" role="note">
+                    <strong>Currently learning:</strong> JavaScript fundamentals, web development, and Git workflows.
+                </div>
+            </article>
+
+            <aside class="card span-4">
+                <h2>Quick Facts</h2>
+                <ul>
+                    <li>Track: <span class="kbd">Web Development</span></li>
+                    <li>School: <span class="kbd">IT Step School</span></li>
+                    <li>City: <span class="kbd">Рівне</span></li>
+                    <li>Teacher: <span class="kbd">Vlad Tymoshchuk</span></li>
+                    <li>Email: <span class="kbd">ostap@superclass.edu</span></li>
+                </ul>
+            </aside>
+
+            <article class="card span-12">
+                <h2>Фотогалерея проєктів та досягнень</h2>
+                <div class="carousel-container" id="photoCarousel">
+                    <button class="carousel-btn prev" aria-label="Попереднє фото">&#10094;</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_1dluam1dluam1dlu.jpg" alt="Проєкт 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_6ekfsn6ekfsn6ekf.jpg" alt="Проєкт 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_e1lcide1lcide1lc (1).jpg" alt="Проєкт 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Gemini_Generated_Image_xz2k7hxz2k7hxz2k.jpg" alt="Проєкт 4">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images (2) (1).jpg" alt="Остап">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Наступне фото">&#10095;</button>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </article>
+
+            <article class="card span-12">
+                <h2>Background</h2>
+                <div class="tabs" id="profileTabs">
+                    <div class="tablist" role="tablist" aria-label="Profile sections">
+                        <button class="tab" role="tab" aria-controls="tab-edu" data-tab="edu">Education</button>
+                        <button class="tab" role="tab" aria-controls="tab-skills" data-tab="skills">Skills</button>
+                        <button class="tab" role="tab" aria-controls="tab-projects" data-tab="projects">Projects</button>
+                        <button class="tab" role="tab" aria-controls="tab-contact" data-tab="contact">Contact</button>
+                    </div>
+
+                    <section class="tabpanel" id="tab-edu" role="tabpanel" aria-labelledby="edu">
+                        <h3>Education</h3>
+                        <ul>
+                            <li>Enrolled in IT Step School (Рівне)</li>
+                            <li>Enrolled in SuperClass — Web Development Track (2026–present)</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-skills" role="tabpanel" aria-labelledby="skills">
+                        <h3>Skills</h3>
+                        <div class="pill-list" aria-label="Skills">
+                            <span class="pill">HTML</span>
+                            <span class="pill">CSS</span>
+                            <span class="pill">JavaScript (learning)</span>
+                            <span class="pill">Git & GitHub</span>
+                            <span class="pill">Guitar</span>
+                        </div>
+                    </section>
+
+                    <section class="tabpanel" id="tab-projects" role="tabpanel" aria-labelledby="projects">
+                        <h3>Projects</h3>
+                        <ul>
+                            <li>Personal portfolio page built with HTML & CSS</li>
+                            <li>To-do list app built with vanilla JavaScript</li>
+                        </ul>
+                    </section>
+
+                    <section class="tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="contact">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li>Email: ostap@superclass.edu</li>
+                            <li>City: Рівне</li>
+                            <li>Class: Web Development Track</li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Interests</h2>
+                <div class="pill-list" aria-label="Interests">
+                    <span class="pill">Coding</span>
+                    <span class="pill">Guitar</span>
+                    <span class="pill">Gaming</span>
+                    <span class="pill">Open Source</span>
+                </div>
+            </article>
+
+            <article class="card span-6">
+                <h2>Courses Enrolled</h2>
+                <div class="pill-list" aria-label="Courses">
+                    <span class="pill">HTML & CSS</span>
+                    <span class="pill">JS Fundamentals</span>
+                    <span class="pill">Git & GitHub</span>
+                </div>
+            </article>
+        </section>
+
+        <footer>
+            <p>© 2026 SuperClass. Student Profile — Остап (Рівне).</p>
+        </footer>
+    </div>
+</body>
+
+</html>
